@@ -53,7 +53,8 @@ class QLearningAgent(Agent):
         all_actions = self.actionFunction(state)
         if len(all_actions) > 0:
             # *********
-
+            # This return ws added for the program to run
+            return "exit"
             # *********
         else:
             return "exit"

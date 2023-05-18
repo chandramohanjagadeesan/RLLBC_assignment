@@ -74,7 +74,8 @@ class ValueIterationAgent(Agent):
 
         # **********
         # TODO 2.4
-
+            # this return was added for the program to run
+            return None
         # ***********
 
     def getAction(self, state):

@@ -21,7 +21,9 @@ class PolicyIterationAgent(Agent):
         # Policy initialization
         # ******************
         # TODO 1.1.a)
-        # self.V = ...
+        self.V = {}
+        for s in states:
+            self.V[s] = 0
 
         # *******************
 
@@ -40,9 +42,18 @@ class PolicyIterationAgent(Agent):
                     # if...
                     #
                     # else:...
-
+                    if a is None:
+                        newV[s] = 0
+                    else:
+                        trans_prob_pair = self.mdp.getTransitionStatesAndProbs(s, a)
+                        val = 0
+                        for pair in trans_prob_pair:
+                            next_state = pair[0]
+                            prob_state = pair[1]
+                            val = val + prob_state*(self.mdp.getReward(s, a, next_state)+(discount*self.V[next_state]))
+                        newV[s] = val
                 # update value estimate
-                # self.V=...
+                self.V = newV
 
                 # ******************
 
@@ -55,14 +66,25 @@ class PolicyIterationAgent(Agent):
                     old_action = self.pi[s]
                     # ************
                     # TODO 1.1.c)
-                    # self.pi[s] = ...
-
-                    # policy_stable =
+                    val_action = {}
+                    for a in actions:
+                        trans_prob_pair = self.mdp.getTransitionStatesAndProbs(s, a)
+                        val = 0
+                        for pair in trans_prob_pair:
+                            next_state = pair[0]
+                            prob_state = pair[1]
+                            val = val + prob_state * (
+                                        self.mdp.getReward(s, a, next_state) + (discount * self.V[next_state]))
+                        val_action[a] = val
+                    self.pi[s] = max(val_action, key=val_action.get)
+                    if old_action != self.pi[s]:
+                        policy_stable = False
 
                     # ****************
             counter += 1
 
-            if policy_stable: break
+            if policy_stable:
+                break
 
         print("Policy converged after %i iterations of policy iteration" % counter)
 
@@ -72,7 +94,7 @@ class PolicyIterationAgent(Agent):
         """
         # *******
         # TODO 1.2.
-
+        return self.V[state]
         # ********
 
     def getQValue(self, state, action):
@@ -85,7 +107,7 @@ class PolicyIterationAgent(Agent):
         """
         # *********
         # TODO 1.3.
-
+        return self.V[state]
         # **********
 
     def getPolicy(self, state):
@@ -95,7 +117,7 @@ class PolicyIterationAgent(Agent):
         """
         # **********
         # TODO 1.4.
-
+        return self.pi[state]
         # **********
 
     def getAction(self, state):
