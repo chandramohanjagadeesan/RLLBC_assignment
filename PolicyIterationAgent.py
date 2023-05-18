@@ -107,7 +107,11 @@ class PolicyIterationAgent(Agent):
         """
         # *********
         # TODO 1.3.
-        return self.V[state]
+        trans_prob = self.mdp.getTransitionStatesAndProbs(state, action)
+        val = 0
+        for (next_state, prob) in trans_prob:
+            val = val + prob*(self.mdp.getReward(state, action, next_state)+(self.discount*self.V[next_state]))
+        return val
         # **********
 
     def getPolicy(self, state):
