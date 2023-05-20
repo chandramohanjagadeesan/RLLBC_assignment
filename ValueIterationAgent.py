@@ -33,7 +33,7 @@ class ValueIterationAgent(Agent):
                 if len(actions) == 0:
                     newV[s] = 0
                 else:
-                    maximum = 0 #float("-inf")
+                    maximum = 0
                     for a in actions:
                         qValue = self.getQValue(state=s, action=a)
                         maximum = max(maximum, qValue)
