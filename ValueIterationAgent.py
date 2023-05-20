@@ -18,7 +18,9 @@ class ValueIterationAgent(Agent):
         number_states = len(states)
         # *************
         #  TODO 2.1 a)
-        # self.V = ...
+        self.V = {}
+        for s in states:
+            self.V[s] = 0
 
         # ************
 
@@ -28,14 +30,19 @@ class ValueIterationAgent(Agent):
                 actions = self.mdp.getPossibleActions(s)
                 # **************
                 # TODO 2.1. b)
-                # if ...
-                #
-                # else: ...
+                if len(actions) == 0:
+                    newV[s] = 0
+                else:
+                    maximum = 0 #float("-inf")
+                    for a in actions:
+                        qValue = self.getQValue(state=s, action=a)
+                        maximum = max(maximum, qValue)
+                    
+                    newV[s] = maximum
 
-                # Update value function with new estimate
-                # self.V =
-
-                # ***************
+            # Update value function with new estimate
+            self.V = newV
+            # ***************
 
     def getValue(self, state):
         """
@@ -44,7 +51,7 @@ class ValueIterationAgent(Agent):
         """
         # **********
         # TODO 2.2
-
+        return self.V[state]
         # **********
 
     def getQValue(self, state, action):
@@ -57,7 +64,12 @@ class ValueIterationAgent(Agent):
         """
         # ***********
         # TODO 2.3.
-
+        Qvalue = 0
+        trans_state_prob = self.mdp.getTransitionStatesAndProbs(state, action)
+        for next_state, probability in trans_state_prob:
+            Qvalue += probability*(self.mdp.getReward(state, action, next_state)+(self.discount*self.getValue(state=next_state)))
+        
+        return Qvalue
         # **********
 
     def getPolicy(self, state):
@@ -71,12 +83,18 @@ class ValueIterationAgent(Agent):
             return None
 
         else:
-
-        # **********
-        # TODO 2.4
-            # this return was added for the program to run
-            return None
-        # ***********
+            # **********
+            # TODO 2.4
+            qValues = []
+            for a in actions:
+                qValues.append(self.getQValue(state=state, action=a))
+            # getting the index that maximizes the q-value
+            for i, q in enumerate(qValues):
+                if q == max(qValues):
+                    index = i
+                    
+            return actions[index]
+            # ***********
 
     def getAction(self, state):
         """
