@@ -1,0 +1,37 @@
+
+
+ Testing the PolicyIterationAgent on the MazeGrid 
+
+ values 
+ at (-1, -1) : 0.000000
+ at (0, 0) : 0.668008
+ at (0, 1) : 0.760787
+ at (0, 2) : 0.866451
+ at (0, 3) : 1.000000
+ at (1, 2) : 0.760787
+ at (2, 0) : 0.223503
+ at (2, 2) : 0.658358
+ at (2, 3) : 0.570435
+ at (3, 0) : 0.254547
+ at (3, 3) : 0.500870
+ at (4, 0) : 0.289901
+ at (4, 1) : 0.334585
+ at (4, 2) : 0.381055
+ at (4, 3) : 0.433979
+ 
+ policy 
+ at (-1, -1) move None 
+at (0, 0) move east 
+at (0, 1) move east 
+at (0, 2) move east 
+at (0, 3) move exit 
+at (1, 2) move north 
+at (2, 0) move south 
+at (2, 2) move north 
+at (2, 3) move west 
+at (3, 0) move south 
+at (3, 3) move north 
+at (4, 0) move east 
+at (4, 1) move east 
+at (4, 2) move east 
+at (4, 3) move north 

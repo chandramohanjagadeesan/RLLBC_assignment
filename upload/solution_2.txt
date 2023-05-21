@@ -1,0 +1,43 @@
+Task 2 - Value Iteration
+
+Answers:
+
+
+6) 	Rounds of value iteration for start state to become non-zero: 10
+    Why? as all values are initialized with 0, the reward of 1 has to propagate all the way to the start state.
+	For the first iteration only (0,3) changes to 1, as it knows its own reward, but the adjascent (0,2) still looks up 
+	the old, initial value of 0.0 for V[(0,3)] when calculating its new value. Only in the next stop, the value of (0,2)
+	includes the discounted new value of (0,3). In the same way each iteration spreads the non-zero state value to the next state, from which the former is reachable.
+	This continues until in the 10th iteration the chain is completed and the start state value is computed from a discounted
+	non-zero value of (4,1).
+7) 	Which parameter to change: noise
+	Value of the changed parameter: <= 0.01695 
+
+8)	Parameter values producing optimal policy types:
+	    a) Prefer the close exit (+1), risking the cliff (-10)
+		-> r, r, u -> very high discount (+10 not worth it), with low noise (imminent risk unlikely)
+		-n 0.0 -d 0.3
+
+	    b) Prefer the close exit (+1), but avoiding the cliff (-10)
+		-> long way 3*up, 2*right, 2*down -> avoid risk at all cost -> high noise  
+		 -n 0.2 -d 0.36
+	    
+		c) Prefer the distant exit (+10), risking the cliff (-10)
+		-> 3*r, up -> discount closer to 1, noise closer to zero
+		 -n 0.1 -d 0.9
+	    
+		d) Prefer the distant exit (+10), avoiding the cliff (-10)
+		-> long way, low risk -> discount closer to 1, high noise
+		 -n 0.3 -d 0.9
+	    
+		e) Avoid both exits (also avoiding the cliff)
+		-> discount close to zero, high noise
+		 -n 0.8 -d 0.1
+
+The pros and cons of policy iteration are...
+9) 	Pros: 								Cons:
+		-faster/less computations			-more complicated/less intuitive
+		-faster conversion					-
+		-									-
+		-									-
+
