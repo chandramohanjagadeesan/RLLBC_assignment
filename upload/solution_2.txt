@@ -34,10 +34,22 @@ Answers:
 		-> discount close to zero, high noise
 		 -n 0.8 -d 0.1
 
-The pros and cons of policy iteration are...
-9) 	Pros: 								Cons:
-		-faster/less computations			-more complicated/less intuitive
-		-faster conversion					-
-		-									-
-		-									-
 
+9) 	Pros: 							Cons:
+		-faster/less computation costs            		-more complicated/less intuitive						
+		-faster conversion	
+		-less execution time								
+	     
+	     In terms of convergence, Policy Iteration takes fewer iterations to converges towards the optimal policy.
+	     
+	     In terms of algorithm, policy iteration includes the following algorithms:
+	     - policy evaluation
+	     - policy improvement
+	     
+	     On the other hand, Value iteration includes the following algorithms:
+	     - policy extraction
+	     - finding the value function that is optimal
+	     
+	     The relavant functions are:
+	     -value functions (getValue, getQValue, getPolicy, getAction)
+	     -update functions

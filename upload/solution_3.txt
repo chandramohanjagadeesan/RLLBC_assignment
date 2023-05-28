@@ -3,14 +3,19 @@ Task 3 - Q-Learning
 Answers:
 
 
-6) 	Training the Q-learning agent without noise:
-        a) Value at state (1, 5): xxx
-        b) Optimal policy : yes / no
-        c) Name of parameter: xxx
+7) 	Training the Q-learning agent without noise:
+        a) Value at state (1, 5): for moving north : 0.000000 
+				  for moving west : 0.000000 
+				  for moving south : 0.000000 
+				  for moving east : 0.000000
+        b) Optimal policy : No, it appears that the agent has not learn an optimal policy for this state.
+        c) Name of parameter: Learning rate, Epsilon (Exploration rate), Discount factor.
 
-7) 	Comparison of values for the start state:
-        1) Value of the start state after 300 episodes: xxx
-        2) Average returns from the start state: xxx
+8) 	Comparison of values for the start state:
+        1) Value of the start state after 300 episodes: started with return -90.01 and after 300 episodes return was 1.6677181699666577
+        2) Average returns from the start state: -13.353198421463013
+        
+        -They are different because they can be attributed to the exploration-expoitaion trade off. Another reason can be the challenging nature of the CliffGrid.
 
-8)  Faster converging algorithm? xxx
+9)  Faster converging algorithm? Value Iteration trends to faster converging algorithm towards the optimal policy.
 
